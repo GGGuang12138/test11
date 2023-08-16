@@ -52,4 +52,25 @@ public class Solution {
         }
         return res;
     }
+
+    public int trap3(int[] height) {
+        // 每一格能装的水，等于左边最高和右边最高的较小值，减去黑色占用的面积
+        int maxLeft = height[0];
+        int maxRight = height[height.length - 1];
+        int left = 0;
+        int right = height.length - 1;
+        int res = 0;
+        while(left < right){
+            maxLeft = Math.max(maxLeft,height[left]);
+            maxRight = Math.max(maxRight,height[right]);
+            if(maxLeft < maxRight){
+                res += maxLeft - height[left];
+                left ++;
+            }else{
+                res += maxRight - height[right];
+                right --;
+            }
+        }
+        return res;
+    }
 }
