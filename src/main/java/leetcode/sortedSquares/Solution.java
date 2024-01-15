@@ -6,6 +6,31 @@ package leetcode.sortedSquares;
  * @date 2024.01.09 22:30
  */
 class Solution {
+
+    public static void main(String[] args) {
+        int[] ints = sortedSquares2(new int[]{-4,-1,0,3,10});
+        for (int i : ints) {
+            System.out.println(i);
+        }
+    }
+
+    public static int[] sortedSquares2(int[] nums) {
+        int left = 0;
+        int right = nums.length-1;
+        int leftR = 0, rightR = 0;
+        while(right >= 0){
+            leftR = nums[left]*nums[left];
+            rightR = nums[right]*nums[right];
+            if(leftR >= rightR){
+                nums[left] = nums[right];
+                nums[right] = leftR;
+            }else{
+                nums[right] = rightR;
+            }
+            right--;
+        }
+        return nums;
+    }
     public int[] sortedSquares(int[] nums) {
         int[] res = new int[nums.length];
         int l = 0;
